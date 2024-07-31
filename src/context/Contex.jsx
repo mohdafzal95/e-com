@@ -11,6 +11,7 @@ export const ShoppingCartProvider = ({ children }) => {
     const [items, setItems] = useState([]);
     const [products , setProducts]=useState([])
     const [selectedProduct , setSelectedProduct]=useState(null)
+    const [loading , setLoading]=useState(true)
 
     // Open/ Close detail
     const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
@@ -60,6 +61,7 @@ export const ShoppingCartProvider = ({ children }) => {
                 setItems(productList)
                 setProducts(product)
             }
+            setLoading(false)
           } catch (error) {
             console.error('Error fetching products:', error);
           }
@@ -74,6 +76,7 @@ export const ShoppingCartProvider = ({ children }) => {
 
     return (
         <Context.Provider value={{
+            loading,
             items,
             setItems,
             openProductDetail,

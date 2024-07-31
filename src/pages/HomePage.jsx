@@ -3,9 +3,10 @@ import { Card } from "../components";
 import { Context } from "../context";
 import { useNavigate } from "react-router-dom";
 import { NavBar } from "../components";
+import Loader from "../components/Loader";
 
 export const HomePage = () => {
-  const { items, setItems, products , setSelectedProduct} = useContext(Context);
+  const { items, setItems, products , setSelectedProduct , loading} = useContext(Context);
 
   const [searchWord, setSearchWord] = useState("");
 
@@ -33,6 +34,11 @@ export const HomePage = () => {
   console.log("Products"  , products)
   console.log("search Word" , searchWord , searchWord.length)
   console.log("Filtered items" , items)
+
+ if(loading){
+  return  <Loader/>
+ }
+
   return (
     <div>
       <NavBar />
